@@ -1,7 +1,7 @@
 {
-  "name": "sw-profile",
+  "name": "ceted-users",
   "version": "1.0.0",
-  "description": "Profile Service",
+  "description": "CETED users Service",
   "main": "server.js",
   "scripts": {
     "test": "test"
