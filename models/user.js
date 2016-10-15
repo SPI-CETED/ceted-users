@@ -7,10 +7,33 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    email: DataTypes.STRING,
-    userName: {
-      type: DataTypes.STRING,
-      field: 'user_name'
+    name: {
+      type: DataTypes.STRING(70),
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      unique: true
+    },
+    login: {
+      type: DataTypes.STRING(15),
+      allowNull: false,
+      unique: true
+    },
+    cpf: {
+      type: DataTypes.STRING(14),
+      allowNull: false,
+      unique: true
+    },
+    birthDay: DataTypes.DATE,
+    profile: {
+      type:   DataTypes.ENUM,
+      values: ['STUDENT', 'TEATCHER', 'COMINITY']
+    },
+    type: {
+      type:   DataTypes.ENUM,
+      values: ['SCHOLARSHIP', 'VOLUNTARY', 'SALARIED']
     },
     password: DataTypes.STRING
   }, {
