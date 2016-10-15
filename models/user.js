@@ -36,7 +36,11 @@ module.exports = function(sequelize, DataTypes) {
       values: ['SCHOLARSHIP', 'VOLUNTARY', 'SALARIED']
     },
     lastVisitDate: DataTypes.DATE,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    deleted: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   }, {
         updatedAt: 'created_on',
         createdAt: 'updated_on',
