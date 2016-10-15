@@ -35,6 +35,7 @@ module.exports = function(sequelize, DataTypes) {
       type:   DataTypes.ENUM,
       values: ['SCHOLARSHIP', 'VOLUNTARY', 'SALARIED']
     },
+    lastVisitDate: DataTypes.DATE,
     password: DataTypes.STRING
   }, {
         updatedAt: 'created_on',
