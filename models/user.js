@@ -41,7 +41,11 @@ module.exports = function(sequelize, DataTypes) {
         updatedAt: 'created_on',
         createdAt: 'updated_on',
         tableName: 'user',
-
+        classMethods: {
+            associate: function(models) {
+                models.User.hasOne(models.User, { as: 'createdBy', foreignKey: 'created_By'})
+            }
+        },
         instanceMethods: {
           toJSON: function () {
             var values = this.get();
