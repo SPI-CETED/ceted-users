@@ -38,7 +38,8 @@ module.exports = function(app) {
     create: function(req, res){
 
     	cryptService.cryptPassword(req.body.password).then(function(hashedPassword){
-    		User.build({email: req.body.email, password: hashedPassword, userName: req.body.userName}).save().then(function(user){
+        req.body.password = hashedPassword;
+    		User.build(req.body).save().then(function(user){
 
     			userCreated(user, res);
 
