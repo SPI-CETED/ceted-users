@@ -1,9 +1,4 @@
-"use strict";
-
-module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
-    id : {
-      type: DataTypes.INTEGER(6).UNSIGNED,
+  type: DataTypes.INTEGER(6).UNSIGNED,
       primaryKey: true,
       autoIncrement: true
     },
@@ -16,20 +11,19 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true
     },
-    login: {
-      type: DataTypes.STRING(15),
-      allowNull: false,
-      unique: true
-    },
     cpf: {
       type: DataTypes.STRING(14),
       allowNull: false,
       unique: true
     },
+    registry: {
+      type: DataTypes.INTEGER(12),
+      allowNull:  true
+    },
     birthDay: DataTypes.DATE,
     profile: {
       type:   DataTypes.ENUM,
-      values: ['STUDENT', 'TEATCHER', 'COMINITY']
+      values: ['STUDENT', 'TEATCHER', 'COMUNITY']
     },
     type: {
       type:   DataTypes.ENUM,
