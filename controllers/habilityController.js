@@ -16,12 +16,22 @@ module.exports = function(app) {
     			errorCreatingHability(res, error);
 
     		});
+        },
+
+        delete : function(req, res){
+            Hability.destroy({where: {id: req.params.id}}).then(function(){
+                habilityDeleted(res);
+            });
         }
 
     };
 
     var habilityCreated = function(hability, res){
         buildResponse(res, 201, 'Hability Created', hability);
+    };
+
+    var habilityDeleted = function(res){
+        buildResponse(res, 200, 'Hability Deleted');
     };
 
     var errorCreatingHability = function(res, err){
