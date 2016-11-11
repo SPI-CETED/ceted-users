@@ -75,7 +75,7 @@ module.exports = function(app) {
   }
 
   var errorCreatingUser = function(res, err){
-    buildResponse(res, 500, 'User not Created', null, error);
+    buildResponse(res, 500, 'User not Created', null, err);
   };
 
   var buildResponse = function(res, statusCode, message, user, error){
