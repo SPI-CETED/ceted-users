@@ -9,7 +9,7 @@ module.exports = function (sequilize, DataTypes) {
         },
         description : {
             type: DataTypes.STRING(150),
-            allownull: false
+            allowNull: false
         },
         deleted : DataTypes.BOOLEAN,
     }, {
