@@ -48,6 +48,7 @@ module.exports = function(sequelize, DataTypes) {
         classMethods: {
             associate: function(models) {
                 models.User.hasOne(models.User, { as: 'createdBy', foreignKey: 'created_By'})
+                models.User.belongsToMany(models.Hability, { through: 'HabilityUser', foreignKey: 'idHability' });                
             }
         },
         instanceMethods: {
