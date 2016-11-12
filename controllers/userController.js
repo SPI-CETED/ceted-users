@@ -50,12 +50,30 @@ module.exports = function(app) {
     		});
 
     	});
+    },
+
+    update: function(req, res){
+      User.findOne({where: {id: req.params.id}}).then(function(user){
+        if(user){
+          user.updateAttributes(req.body).then(function(user){
+            userUpdated(user, res);
+          }).catch(function(error){
+            errorUpdatingUser(res, error);
+          });
+        }else{
+          userNotFound(res);
+        }
+      });    
     }
 
   };
 
   var userCreated = function(user, res){
     buildResponse(res, 201, 'User Created', user);
+  };
+
+  var userUpdated = function(user, res){
+    buildResponse(res, 201, 'User Updated', user);
   };
 
   var userFound = function(user, res){
@@ -72,10 +90,14 @@ module.exports = function(app) {
 
   var emailOrPasswordEmpyt = function(res){
     buildResponse(res, 400, 'Email e Senha são obrigatórios');
-  }
+  };
 
   var errorCreatingUser = function(res, err){
     buildResponse(res, 500, 'User not Created', null, err);
+  };
+
+  var errorUpdatingUser = function(res, err){
+    buildResponse(res, 500, 'User not Updated', null, err);
   };
 
   var buildResponse = function(res, statusCode, message, user, error){

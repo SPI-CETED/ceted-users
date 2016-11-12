@@ -5,4 +5,6 @@ module.exports = function(app){
   app.get('/v1/users/:id', userController.findById);
 
   app.post('/v1/users', userController.create);
+
+  app.put('/v1/users/:id', userController.update);
 }
