@@ -26,11 +26,11 @@ module.exports = function(app) {
 
         update: function(req, res){
           Hability.findOne({where: {id: req.params.id}}).then(function(hability){
-            if(user){
-              hability.updateAttributes(req.body).then(function(user){
-                habilityUpdated(user, res);
+            if(hability){
+              hability.updateAttributes(req.body).then(function(hability){
+                habilityUpdated(hability, res);
               }).catch(function(error){
-                errorHabilityUser(res, error);
+                errorCreatingHability(res, error);
               });
             }else{
               habilityNotFound(res);
@@ -46,7 +46,8 @@ module.exports = function(app) {
 
           Hability.findAll({
             limit: limit,
-            offset: offset
+            offset: offset,
+            order: 'id DESC'
           }).then(function(habilities){
             var data = {};
             data.result = habilities;
