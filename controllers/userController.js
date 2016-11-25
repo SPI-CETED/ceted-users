@@ -10,12 +10,25 @@ module.exports = function(app) {
   var UserController = {
 
     findById: function(req, res){
-      res.json(User.build({email: 'teste', password: 'teste'}));
+      User.findOne({where: {id: req.params.id}}).then(function(user){
+        if(user)
+          userFound(user, res);
+        else
+          userNotFound(res);
+      });
+    },
+
+    findAll: function(req, res){
+      User.findAll({
+        order: 'name'
+      }).then(function(users){
+        res.status(200).json(users);
+      })
     },
 
     authenticate: function(req, res){
-      var email = req.query.email;
-      var password = req.query.password;
+      var email = req.body.email;
+      var password = req.body.password;
 
       if(!email || !password){
         emailOrPasswordEmpyt(res);
