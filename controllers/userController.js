@@ -64,10 +64,27 @@ module.exports = function(app) {
           userNotFound(res);
         }
       });    
-    }
+    },
 
+    delete: function(req, res){
+      User.findOne({where: {id: req.params.id}}).then(function(user){
+        if(user){
+          user.updateAttributes({deleted: true}).then(function(user){
+            userDeleted(user, res);
+          }).catch(function(error){
+            errorUpdatingUser(res, error);
+          });
+        }else{
+          User.destroy({where: {id: req.params.id}}).then(function(){
+                userDeleted(res);
+          });
+        }
+      });  
+      }
   };
 
+
+ 
   var userCreated = function(user, res){
     buildResponse(res, 201, 'User Created', user);
   };
@@ -113,6 +130,10 @@ module.exports = function(app) {
     }
     res.status(statusCode).json(jsonResponse);
   }
+
+  var userDeleted = function(res){
+        buildResponse(res, 200, 'User Deleted');
+    };
 
   var buildUserFilterJson = function(json){
     var defer = q.defer();
