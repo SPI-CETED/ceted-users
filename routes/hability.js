@@ -6,4 +6,6 @@ module.exports = function(app){
 
   app.put('/v1/habilities/:id', habilityController.update);
   app.get('/v1/habilities/list', habilityController.list);
+
+  app.get('/v1/habilities/:id', habilityController.findOne);
 }

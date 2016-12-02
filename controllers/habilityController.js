@@ -24,6 +24,12 @@ module.exports = function(app) {
             });
         },
 
+        findOne : function(req, res){
+            Hability.findOne({where: {id: req.params.id}}).then(function(data){
+                res.status(200).json(data);
+            });
+        },
+
         update: function(req, res){
           Hability.findOne({where: {id: req.params.id}}).then(function(hability){
             if(hability){

@@ -1,7 +1,7 @@
 {
-   "name": "ceted",
+   "name": "ceted_users",
    "user": "root",
-   "password": "root",
+   "password": "199400",
    "host": "localhost",
    "port": 3306
  }
